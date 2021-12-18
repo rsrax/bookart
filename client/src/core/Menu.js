@@ -62,10 +62,6 @@ const Menu = ({history}) => {
                            CART <sup><small className="cart-badge">{itemTotal()}</small></sup>
                         </Link>
                     </li>
-                          
-                    <li className="nav-item">
-                       <Link className="nav-link" style={isActive(history, '/about')} to="/about">ABOUT</Link>
-                    </li>
                     
                     <li className="nav-item ml-auto">
                         <span className="nav-link" style={{cursor: 'pointer', color: '#ffffff'}} onClick={() => signout(() => {
