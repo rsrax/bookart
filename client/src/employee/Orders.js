@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import Layout from '../core/Layout';
 import {isAuthenticated} from '../auth';
-import {listOrders, getStatusValues, updateOrderStatus} from '../admin/ApiAdmin';
+import {listOrders, getStatusValues, updateOrderStatus} from './ApiEmployee';
 import Moment from 'moment';
 
 export const Orders = () => {

@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import Layout from '../core/Layout';
 import {isAuthenticated} from '../auth';
-import {createProduct, getCategories} from './ApiAdmin';
+import {createProduct, getCategories} from './ApiSeller';
 
 const AddProduct = () => {
 

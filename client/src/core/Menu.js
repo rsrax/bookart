@@ -63,6 +63,12 @@ const Menu = ({history}) => {
                          </li>
                           )}
                     
+                    {isAuthenticated() && isAuthenticated().user.role === 3 && (
+                         
+                         <li className="nav-item">
+                             <Link className="nav-link" style={isActive(history, '/seller/dashboard')} to="/seller/dashboard">DASHBOARD</Link>
+                         </li>
+                          )}
                     
                     <li className="nav-item">
                        <Link className="nav-link" style={isActive(history, '/cart')} to="/cart">
