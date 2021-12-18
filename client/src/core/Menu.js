@@ -37,9 +37,6 @@ const Menu = ({history}) => {
                         <Link className="nav-link" style={isActive(history, '/signup')} to="/signup">SIGNUP</Link>
                     </li>
  
-                    <li className="nav-item ml-auto">
-                       <Link className="nav-link" style={isActive(history, '/about')} to="/about">ABOUT</Link>
-                    </li>
                 </Fragment>
                 )}
 
@@ -64,10 +61,6 @@ const Menu = ({history}) => {
                        <Link className="nav-link" style={isActive(history, '/cart')} to="/cart">
                            CART <sup><small className="cart-badge">{itemTotal()}</small></sup>
                         </Link>
-                    </li>
-                          
-                    <li className="nav-item">
-                       <Link className="nav-link" style={isActive(history, '/about')} to="/about">ABOUT</Link>
                     </li>
                     
                     <li className="nav-item ml-auto">

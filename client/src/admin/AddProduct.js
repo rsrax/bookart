@@ -7,6 +7,7 @@ const AddProduct = () => {
 
     const {user, token} = isAuthenticated();
     const [values, setValues] = useState({
+        isbn: '',
         name: '',
         description: '',
         price: '',
@@ -21,7 +22,7 @@ const AddProduct = () => {
         formData: ''
     });
 
-    const {name, description, price, categories, category, shipping, quantity,
+    const {isbn,name, description, price, categories, category, quantity,
         loading, error, createdProduct, formData} = values;
 
     // load categories and form set data
@@ -65,8 +66,8 @@ const AddProduct = () => {
             else
             {
                 setValues({
-                    ...values, name: '', description: '', photo: '', price: '', quantity: 0, loading: '', 
-                    category: '', shipping: '',createdProduct: data.name
+                    ...values, isbn: '', name: '', description: '', photo: '', price: '', quantity: 0, loading: '', 
+                    category: '',createdProduct: data.name
                 })
             }
         })
@@ -80,6 +81,11 @@ const AddProduct = () => {
                 <label className="btn btn-secondary">
                 <input onChange={handleChange('photo')} type="file" name="photo" accept="image/*" />
                 </label>
+            </div>
+
+            <div className="form-group">
+                <label>ISBN</label>
+                <input onChange={handleChange('isbn')} type="text" className="form-control" value={isbn} />
             </div>
 
             <div className="form-group">
@@ -108,20 +114,11 @@ const AddProduct = () => {
             </div>
 
             <div className="form-group">
-                <label>Shipping</label>
-                <select onChange={handleChange('shipping')} className="form-control" value={shipping}>
-                    <option>Please Select</option>
-                    <option value="0">No</option>
-                    <option value="1">Yes</option>
-                </select>
-            </div>
-
-            <div className="form-group">
                 <label>Quantity</label>
                 <input onChange={handleChange('quantity')} type="number" className="form-control" value={quantity} />
             </div>
 
-            <button className="btn btn-outline-primary">Create Product</button>
+            <button className="btn btn-outline-primary">Add New Book</button>
         </form>
     )
 
@@ -145,7 +142,7 @@ const AddProduct = () => {
 
 
     return (
-        <Layout title="Add a new Product" description={`Ready to add a new Product?`}>
+        <Layout title="Add a new Book" description={`Ready to add a new Book?`}>
             <div className="row">
                 <div className="col-md-8 offset-md-2">
                     {showError()}
