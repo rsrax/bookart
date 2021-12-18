@@ -1,3 +1,6 @@
+// Config Variables
+require("dotenv").config();
+
 const express = require("express");
 const app = express();
 const path = require("path");
@@ -12,9 +15,6 @@ const cookieParser = require("cookie-parser");
 const expressValidator = require("express-validator");
 const cors = require("cors");
 
-// Config Variables
-require("dotenv").config();
-
 // Import Routes
 const authRoutes = require("./routes/auth");
 const userRoutes = require("./routes/user");
@@ -25,12 +25,12 @@ const orderRoutes = require("./routes/order");
 
 // MongoDB Setup
 mongoose
-  .connect(process.env.DATABASE, {
-    useNewUrlParser: true,
-    useCreateIndex: true,
-    useUnifiedTopology: true,
-  })
-  .then(() => console.log("Database Connected..."));
+	.connect(process.env.DATABASE, {
+		useNewUrlParser: true,
+		useCreateIndex: true,
+		useUnifiedTopology: true,
+	})
+	.then(() => console.log("Database Connected..."));
 
 // Middlewares
 app.use(morgan("dev"));
@@ -49,17 +49,17 @@ app.use("/api", orderRoutes);
 
 // Serve Static Assets in production
 if (process.env.NODE_ENV === "production") {
-  // Set static folder
-  app.use(express.static("client/build"));
+	// Set static folder
+	app.use(express.static("client/build"));
 
-  app.get("*", (req, res) => {
-    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
-  });
+	app.get("*", (req, res) => {
+		res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+	});
 }
 
 // Listening to the port
 const port = process.env.PORT || 5001;
 
 app.listen(port, () => {
-  console.log(`Server running on port ${port}`);
+	console.log(`Server running on port ${port}`);
 });
