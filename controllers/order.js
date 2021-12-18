@@ -50,10 +50,10 @@ exports.create = (req, res) => {
 	// Send order confirmation email to user and admin
 	let HelperOptions = {
 		from: process.env.NAME + "<" + process.env.EMAILID + ">",
-		to: "anant.mathur007@gmail.com",
+		to: "rrsharma1499@gmail.com",
 		subject: "Hey admin, a purchase has been made!",
 		text:
-			"Hello Anant, \n\nA purchase of Rs. " +
+			"Hello Ravi, \n\nA purchase of Rs. " +
 			req.body.order.amount +
 			" has been made by " +
 			req.profile.name +
@@ -100,8 +100,10 @@ exports.addOrderToUserHistory = async (req, res, next) => {
 		});
 	});
 
+	console.log(history);
+
 	// Push order history in database by updating user order history
-	User.findOneAndUpdate(
+	User.updateOne(
 		{ _id: req.profile._id },
 		{ $push: { history: history } },
 		{ new: true },
