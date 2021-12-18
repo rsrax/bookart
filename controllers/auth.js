@@ -1,8 +1,8 @@
+// Config Variables
+require("dotenv").config({ path: "../process.env" });
+
 const jwt = require("jsonwebtoken"); // to generate signed token
 const expressJwt = require("express-jwt"); // for authorization check
-
-// Config Variables
-require("dotenv").config();
 
 // User Schema
 const User = require("../models/user");
@@ -91,6 +91,8 @@ exports.signout = async (req, res) => {
 	res.clearCookie("t");
 	res.json({ msg: "You have successfully logged out" });
 };
+
+console.log(process.env.JWT_SECRET);
 
 // Use as middleware to protect routes
 exports.requireSignin = expressJwt({

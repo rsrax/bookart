@@ -1,6 +1,6 @@
 // Config Variables
-require("dotenv").config();
-
+require("dotenv").config({ path: "./process.env" });
+console.log(process.env.DATABASE);
 const express = require("express");
 const app = express();
 const path = require("path");
