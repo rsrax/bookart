@@ -6,12 +6,12 @@ import { getProduct, getCategories, updateProduct } from "./ApiAdmin";
 
 const UpdateProduct = ({ match }) => {
     const [values, setValues] = useState({
+        isbn: "",
         name: "",
         description: "",
         price: "",
         categories: [],
         category: "",
-        shipping: "",
         quantity: "",
         photo: "",
         loading: false,
@@ -23,12 +23,12 @@ const UpdateProduct = ({ match }) => {
 
     const { user, token } = isAuthenticated();
     const {
+        isbn,
         name,
         description,
         price,
         categories,
         category,
-        shipping,
         quantity,
         loading,
         error,
@@ -45,11 +45,11 @@ const UpdateProduct = ({ match }) => {
                 // populate the state
                 setValues({
                     ...values,
+                    isbn: data.isbn,
                     name: data.name,
                     description: data.description,
                     price: data.price,
                     category: data.category._id,
-                    shipping: data.shipping,
                     quantity: data.quantity,
                     formData: new FormData()
                 });
@@ -96,6 +96,7 @@ const UpdateProduct = ({ match }) => {
                 } else {
                     setValues({
                         ...values,
+                        isbn: "",
                         name: "",
                         description: "",
                         photo: "",
@@ -123,6 +124,16 @@ const UpdateProduct = ({ match }) => {
                         accept="image/*"
                     />
                 </label>
+            </div>
+
+            <div className="form-group">
+                <label className="text-muted">ISBN</label>
+                <input
+                    onChange={handleChange("isbn")}
+                    type="text"
+                    className="form-control"
+                    value={isbn}
+                />
             </div>
 
             <div className="form-group">
@@ -171,18 +182,6 @@ const UpdateProduct = ({ match }) => {
             </div>
 
             <div className="form-group">
-                <label className="text-muted">Shipping</label>
-                <select
-                    onChange={handleChange("shipping")}
-                    className="form-control"
-                >
-                    <option>Please select</option>
-                    <option value="0">No</option>
-                    <option value="1">Yes</option>
-                </select>
-            </div>
-
-            <div className="form-group">
                 <label className="text-muted">Quantity</label>
                 <input
                     onChange={handleChange("quantity")}
@@ -192,7 +191,7 @@ const UpdateProduct = ({ match }) => {
                 />
             </div>
 
-            <button className="btn btn-outline-primary">Update Product</button>
+            <button className="btn btn-outline-primary">Update Book</button>
         </form>
     );
 
@@ -231,8 +230,8 @@ const UpdateProduct = ({ match }) => {
 
     return (
         <Layout
-            title="Add a new product"
-            description={`G'day ${user.name}, ready to add a new product?`}
+            title="Update Book"
+            description={`G'day ${user.name}, ready to update book?`}
         >
             <div className="row">
                 <div className="col-md-8 offset-md-2">

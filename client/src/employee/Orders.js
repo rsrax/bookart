@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import Layout from '../core/Layout';
 import {isAuthenticated} from '../auth';
-import {listOrders, getStatusValues, updateOrderStatus} from './ApiAdmin';
+import {listOrders, getStatusValues, updateOrderStatus} from '../admin/ApiAdmin';
 import Moment from 'moment';
 
 export const Orders = () => {
@@ -134,7 +134,7 @@ export const Orders = () => {
                             </ul>
 
                             <h5 className="mt-4 mb-4 font-italic">
-                                Total products in the order: {o.products.length}
+                                Total books in the order: {o.products.length}
                             </h5>
 
                             {o.products.map((p, pIndex) => {

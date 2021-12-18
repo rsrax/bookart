@@ -5,17 +5,20 @@ import Signup from './user/Signup';
 import Signin from './user/Signin';
 import PrivateRoute from './auth/PrivateRoute';
 import AdminRoute from './auth/AdminRoute';
+import EmployeeRoute from './auth/EmployeeRoute';
 import Shop from './core/Shop'
 import Cart from './core/Cart'
 import Product from './core/Product';
 import UserDashboard from './user/UserDashboard';
 import AdminDashboard from './user/AdminDashboard';
+import EmployeeDashboard from './user/EmployeeDashboard';
 import Profile from './user/UserProfile';
 import AddCategory from './admin/AddCateogary';
 import AddProduct from './admin/AddProduct';
 import UpdateProduct from './admin/UpdateProduct';
-import Orders from './admin/Orders';
 import ManageProducts from './admin/ManageProducts';
+import Orders from './employee/Orders';
+import ManageComplaints from './employee/Complaints';
 
 const Routes = () => {
     return (
@@ -33,8 +36,10 @@ const Routes = () => {
                 <AdminRoute exact path="/create/category" component={AddCategory} />
                 <AdminRoute exact path="/create/product" component={AddProduct} />
                 <AdminRoute exact path="/admin/products/update/:productId" component={UpdateProduct} />
-                <AdminRoute exact path="/admin/orders" component={Orders} />
                 <AdminRoute exact path="/admin/products" component={ManageProducts} />
+                <EmployeeRoute exact path="/employee/dashboard" component={EmployeeDashboard} />
+                <EmployeeRoute exact path="/employee/orders" component={Orders} />
+                <EmployeeRoute exact path="/employee/complaints" component={ManageComplaints} />
             </Switch>
         </BrowserRouter>
     );
