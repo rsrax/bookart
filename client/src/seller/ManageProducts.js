@@ -53,7 +53,7 @@ const ManageProducts = props => {
                         {products.map((p, i) => (
                             <li key={i} className="list-group-item d-flex justify-content-between align-items-center">
                                 <strong>{p.name}</strong>
-                                <Link to={`/admin/products/update/${p._id}`}>
+                                <Link to={`/seller/products/update/${p._id}`}>
                                     <span className="badge badge-warning badge-pill">
                                         Update
                                     </span>
