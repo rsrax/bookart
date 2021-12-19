@@ -103,8 +103,9 @@ exports.requireSignin = expressJwt({
 // Middleware for currently logged in user
 exports.isAuth = async (req, res, next) => {
 	let user = req.profile && req.auth && req.profile._id == req.auth._id;
-
+	console.log("checking for auth");
 	if (!user) {
+		console.log("error 1");
 		return res.status(403).json({ err: "Access denied" });
 	}
 
@@ -114,8 +115,18 @@ exports.isAuth = async (req, res, next) => {
 // Middleware for Admin
 exports.isAdmin = async (req, res, next) => {
 	// Not Admin
-	if (req.profile.role === 0) {
+	if (req.profile.role !== 1) {
 		return res.status(403).json({ err: "Admin access required" });
+	}
+
+	next();
+};
+
+// Middleware for Seller
+exports.isSeller = async (req, res, next) => {
+	// Not Seller
+	if (req.profile.role !== 3) {
+		return res.status(403).json({ err: "Seller account required" });
 	}
 
 	next();

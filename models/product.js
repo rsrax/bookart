@@ -43,6 +43,13 @@ const productSchema = new mongoose.Schema(
 			data: Buffer,
 			contentType: String,
 		},
+
+		// id of the seller who created the product
+		seller: {
+			type: ObjectId,
+			ref: "User",
+			required: true,
+		},
 	},
 	{ timestamps: true }
 );
