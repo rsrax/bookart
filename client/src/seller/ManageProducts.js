@@ -7,8 +7,6 @@ import { getProducts, deleteProduct } from "./ApiSeller";
 const ManageProducts = (props) => {
 	const [products, setProducts] = useState([]);
 
-	const [products, setProducts] = useState([]);
-
 	const { user, token } = isAuthenticated();
 
 	const loadProducts = () => {
