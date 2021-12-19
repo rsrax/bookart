@@ -2,6 +2,16 @@ import React from 'react'
 import Layout from '../core/Layout'
 import './ComplaintCSS.css'
 export default function Complaint() {
+    // const loadCategories = () => {
+    //     getCategories().then(data => {
+    //         if (data.error) {
+    //             console.log(data.error);
+    //         } else {
+    //             setData({ ...data, categories: data });
+    //         }
+    //     });
+    // };
+    
     return (
         <Layout title="Complaint" description={`Complaint For your Orders`}>
         <div className="contact3 py-5">
@@ -20,7 +30,17 @@ export default function Complaint() {
               <div className="row">
                 <div className="col-lg-12">
                   <div className="form-group mt-2">
-                    <input className="form-control" type="text" placeholder="name"/>
+                    <select className='form-control'
+                                                        // onChange={handleChange("category")}
+                        >
+                            <option value="All">Select Order</option>
+                            {/* {categories.map((c, i) => (
+                                <option key={i} value={c._id}>
+                                    {c.name}
+                                </option>
+                            ))} */}
+                            <option value="Heyyy">Hello</option>
+                        </select>
                   </div>
                 </div>
                 <div className="col-lg-12">
