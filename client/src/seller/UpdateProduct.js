@@ -127,16 +127,6 @@ const UpdateProduct = ({ match }) => {
             </div>
 
             <div className="form-group">
-                <label className="text-muted">ISBN</label>
-                <input
-                    onChange={handleChange("isbn")}
-                    type="text"
-                    className="form-control"
-                    value={isbn}
-                />
-            </div>
-
-            <div className="form-group">
                 <label className="text-muted">Name</label>
                 <input
                     onChange={handleChange("name")}
