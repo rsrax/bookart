@@ -12,7 +12,7 @@ const ManageProducts = (props) => {
 			if (data.error) {
 				console.log(data.error);
 			} else {
-				const d = data.filter((p) => p.user === user._id);
+				const d = data.filter((p) => p.seller === user._id);
 				setProducts(d);
 			}
 		});
