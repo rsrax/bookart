@@ -96,5 +96,3 @@ export default function Complaint() {
 </Layout>
     )
 }
-
-{/* <link href="/ComplaintCSS.css"></link> */}

@@ -6,9 +6,6 @@ import { getProducts, deleteProduct } from "./ApiSeller";
 
 const ManageProducts = (props) => {
 	const [products, setProducts] = useState([]);
-
-	const [products, setProducts] = useState([]);
-
 	const { user, token } = isAuthenticated();
 
 	const loadProducts = () => {
@@ -16,14 +13,7 @@ const ManageProducts = (props) => {
 			if (data.error) {
 				console.log(data.error);
 			} else {
-				// console.log("Hello");
-				// console.log(user._id===data.user);
-				// if(user._id===data.user)
-				// {
-				//     console.log("adding");
-				//     setProducts(data);
-				// }
-				const d = data.filter((p) => p.user == user._id);
+				const d = data.filter((p) => p.user === user._id);
 				setProducts(d);
 			}
 		});
