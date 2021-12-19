@@ -7,6 +7,8 @@ import { getProducts, deleteProduct } from "./ApiSeller";
 const ManageProducts = (props) => {
 	const [products, setProducts] = useState([]);
 
+	const [products, setProducts] = useState([]);
+
 	const { user, token } = isAuthenticated();
 
 	const loadProducts = () => {
@@ -14,7 +16,15 @@ const ManageProducts = (props) => {
 			if (data.error) {
 				console.log(data.error);
 			} else {
-				setProducts(data);
+				// console.log("Hello");
+				// console.log(user._id===data.user);
+				// if(user._id===data.user)
+				// {
+				//     console.log("adding");
+				//     setProducts(data);
+				// }
+				const d = data.filter((p) => p.user == user._id);
+				setProducts(d);
 			}
 		});
 	};
@@ -38,7 +48,7 @@ const ManageProducts = (props) => {
 		<Layout title="Manage Products" description={`Perform CRUD on products`}>
 			<div className="row">
 				<div className="col-12">
-					<h2 className="text-center">Total {products.length} Products</h2>
+					<h2 className="text-center">Total {products.length} Products </h2>
 					<hr />
 					<ul className="list-group">
 						{products.map((p, i) => (
@@ -50,6 +60,7 @@ const ManageProducts = (props) => {
 								<Link to={`/seller/products/update/${p._id}`}>
 									<span className="badge badge-warning badge-pill">Update</span>
 								</Link>
+
 								<span
 									onClick={() => destroy(p._id)}
 									className="badge badge-danger badge-pill"

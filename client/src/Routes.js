@@ -22,7 +22,7 @@ import UpdateProduct from './seller/UpdateProduct';
 import ManageProducts from './seller/ManageProducts';
 import Orders from './employee/Orders';
 import ManageComplaints from './employee/Complaints';
-
+import Complaint from './user/Complaint';
 const Routes = () => {
     return (
         <BrowserRouter>
@@ -45,6 +45,7 @@ const Routes = () => {
                 <EmployeeRoute exact path="/employee/dashboard" component={EmployeeDashboard} />
                 <EmployeeRoute exact path="/employee/orders" component={Orders} />
                 <EmployeeRoute exact path="/employee/complaints" component={ManageComplaints} />
+                <PrivateRoute exact path="/complaint" component={Complaint}/>
             </Switch>
         </BrowserRouter>
     );
