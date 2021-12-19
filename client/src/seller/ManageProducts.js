@@ -1,24 +1,22 @@
-import React, {useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import Layout from '../core/Layout';
-import {Link} from 'react-router-dom';
-import {isAuthenticated} from '../auth';
-import {getProducts, deleteProduct} from './ApiSeller'
+import { Link } from 'react-router-dom';
+import { isAuthenticated } from '../auth';
+import { getProducts, deleteProduct } from './ApiSeller'
 
 const ManageProducts = props => {
 
     const [products, setProducts] = useState([]);
-    
-    const {user, token} = isAuthenticated();
+
+    const { user, token } = isAuthenticated();
 
     const loadProducts = () => {
         getProducts().then(data => {
-            if(data.error)
-            {
+            if (data.error) {
                 console.log(data.error);
             }
-            
-            else
-            {
+
+            else {
                 // console.log("Hello");
                 // console.log(user._id===data.user);
                 // if(user._id===data.user)
@@ -26,7 +24,7 @@ const ManageProducts = props => {
                 //     console.log("adding");
                 //     setProducts(data);
                 // }
-                const d=data.filter(p=>p.user==user._id);
+                const d = data.filter(p => p.user == user._id);
                 setProducts(d);
             }
         })
@@ -34,13 +32,11 @@ const ManageProducts = props => {
 
     const destroy = productId => {
         deleteProduct(productId, user._id, token).then(data => {
-            if(data.error)
-            {
+            if (data.error) {
                 console.log(data.error);
             }
 
-            else
-            {
+            else {
                 loadProducts();
             }
         })
@@ -55,18 +51,18 @@ const ManageProducts = props => {
         <Layout title="Manage Products" description={`Perform CRUD on products`}>
             <div className="row">
                 <div className="col-12">
-                <h2 className="text-center">Total {products.length} Products </h2>
-                <hr />
+                    <h2 className="text-center">Total {products.length} Products </h2>
+                    <hr />
                     <ul className="list-group">
                         {products.map((p, i) => (
-                            
                             <li key={i} className="list-group-item d-flex justify-content-between align-items-center">
-                                <strong>{p.name} </strong>
-                                <Link to={`/admin/products/update/${p._id}`}>
+                                <strong>{p.name}</strong>
+                                <Link to={`/seller/products/update/${p._id}`}>
                                     <span className="badge badge-warning badge-pill">
                                         Update
                                     </span>
                                 </Link>
+
                                 <span onClick={() => destroy(p._id)} className="badge badge-danger badge-pill">
                                     Delete
                                 </span>
