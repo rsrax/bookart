@@ -67,7 +67,7 @@ const AddProduct = () => {
             {
                 setValues({
                     ...values, isbn: '', name: '', description: '', photo: '', price: '', quantity: 0, loading: '', 
-                    category: '',createdProduct: data.name, user: user._id
+                    category: '',createdProduct: data.name
                 })
             }
         })
