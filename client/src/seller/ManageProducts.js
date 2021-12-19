@@ -16,10 +16,18 @@ const ManageProducts = props => {
             {
                 console.log(data.error);
             }
-
+            
             else
             {
-                setProducts(data);
+                // console.log("Hello");
+                // console.log(user._id===data.user);
+                // if(user._id===data.user)
+                // {
+                //     console.log("adding");
+                //     setProducts(data);
+                // }
+                const d=data.filter(p=>p.user==user._id);
+                setProducts(d);
             }
         })
     }
@@ -47,12 +55,13 @@ const ManageProducts = props => {
         <Layout title="Manage Products" description={`Perform CRUD on products`}>
             <div className="row">
                 <div className="col-12">
-                <h2 className="text-center">Total {products.length} Products</h2>
+                <h2 className="text-center">Total {products.length} Products </h2>
                 <hr />
                     <ul className="list-group">
                         {products.map((p, i) => (
+                            
                             <li key={i} className="list-group-item d-flex justify-content-between align-items-center">
-                                <strong>{p.name}</strong>
+                                <strong>{p.name} </strong>
                                 <Link to={`/admin/products/update/${p._id}`}>
                                     <span className="badge badge-warning badge-pill">
                                         Update

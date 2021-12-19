@@ -36,6 +36,7 @@ const UserDashboard = () => {
                 <ul className="list-group">
                     <li className="list-group-item"><Link to="/cart" className="nav-link">My Shopping Cart</Link></li>
                     <li className="list-group-item"><Link to={`/profile/${_id}`} className="nav-link">Update Profile</Link></li>
+                    <li className="list-group-item"><Link to="/complaint" className="nav-link">Complaint</Link></li>
                 </ul>
 
             </div>
@@ -78,8 +79,10 @@ const UserDashboard = () => {
                                                         p.createdAt
                                                     ).fromNow()}
                                                 </h6>
-                                            </div>
+                                                
+                                            </div>            
                                         );
+                                        
                                     })}
                                 </div>
                             );
