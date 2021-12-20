@@ -13,7 +13,7 @@ exports.create = async (req, res) => {
   // Formidable is used to handle form data. we are using it to handle image upload
   let form = new formidable.IncomingForm();
   form.keepExtensions = true; // Extension for images
-  form.parse(req, (err, fields, files) => {
+  form.parse(req, (err, fields) => {
     // check for all fields
     const { title, description, transaction_id } = fields;
     if (!title || !description || !transaction_id) {
