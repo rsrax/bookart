@@ -31,12 +31,10 @@ exports.update = async (req, res) => {
       if (docs) {
         return res.json({ msg: "Status Updated" });
       } else {
-        console.log("taklif1");
         return res.status(400).json({ msg: "Status update Failed" });
       }
     });
   } catch (err) {
-    console.log("taklif2");
     return res.status(400).json({ error: errorHandler(err) });
   }
 };
@@ -44,7 +42,6 @@ exports.update = async (req, res) => {
 exports.list = async (req, res) => {
   Complaint.find().exec((err, data) => {
     if (err) {
-      console.log(err);
       return res.status(400).json({ msg: errorHandler(err) });
     }
 
