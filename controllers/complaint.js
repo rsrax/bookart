@@ -1,15 +1,8 @@
-const formidable = require("formidable");
-const fs = require("fs");
-const _ = require("lodash");
-
-// Complaint Schema
 const Complaint = require("../models/complaint");
-
-// Handle database error
 const { errorHandler } = require("../helpers/dbErrorHandler");
-const complaint = require("../models/complaint");
 
 exports.create = async (req, res) => {
+<<<<<<< HEAD
   // Formidable is used to handle form data. we are using it to handle image upload
   let form = new formidable.IncomingForm();
   form.keepExtensions = true; // Extension for images
@@ -32,63 +25,34 @@ exports.create = async (req, res) => {
     // Save the new complaint
     complaint.save((err, data) => {
       if (err) return res.status(400).json({ msg: errorHandler(err) });
+=======
+  const { title, description, transaction_id } = req.body;
+  console.log(req.body);
+  console.log(req.params.userId);
+  const complaint = new Complaint({
+    title,
+    description,
+    transaction_id,
+    status: 0,
+    user_id: req.params.userId
+  });
+>>>>>>> d424afce2b6dfecf850eac89842774a09bf64e62
 
+  await complaint.save((err, data) => {
+    if (err) {
+      console.log(err);
+      return res.status(400).json({ error: err });
+    } else
       res.json({
         complaint: data
       });
-    });
   });
 };
 
-// // Update a complaint
-// exports.update = async (req, res) => {
-//   // Formidable is used to handle form data. we are using it to handle image upload
-//   let form = new formidable.IncomingForm();
-//   form.keepExtensions = true; // Extension for images
-
-//   form.parse(req, (err, fields, files) => {
-//     // Update complaint
-//     let complaint = req.complaint;
-//     complaint = _.extend(complaint, fields);
-
-//     // Save the new complaint
-//     complaint.save((err, data) => {
-//       if (err) return res.status(400).json({ msg: errorHandler(err) });
-
-//       res.json({
-//         complaint: data
-//       });
-//     });
-//   });
-// };
-
-// const Complaint = require("../models/complaint");
-// const { errorHandler } = require("../helpers/dbErrorHandler");
-
-// exports.create = async (req, res) => {
-//   const { title, description, transaction_id } = req.body;
-//   const complaint = new Complaint({
-//     title,
-//     description,
-//     transaction_id,
-//     status: 0
-//   });
-
-//   await complaint.save((err, data) => {
-//     if (err) {
-//       return res.status(400).json({ error: err });
-//     } else
-//       res.json({
-//         complaint: data
-//       });
-//   });
-// };
-
 exports.update = async (req, res) => {
   try {
-    const { id } = req.params.complaintId;
     const update = { status: 1 };
-    Complaint.findOneAndUpdate({ _id: id }, update, { strict: false }, function (err, docs) {
+    Complaint.findOneAndUpdate({ _id: req.params.complaintId }, update, { strict: false }, function (err, docs) {
       if (docs) {
         return res.json({ msg: "Status Updated" });
       } else {
@@ -98,4 +62,14 @@ exports.update = async (req, res) => {
   } catch (err) {
     return res.status(400).json({ error: errorHandler(err) });
   }
+};
+
+exports.list = async (req, res) => {
+  Complaint.find().exec((err, data) => {
+    if (err) {
+      return res.status(400).json({ msg: errorHandler(err) });
+    }
+
+    return res.json(data);
+  });
 };
