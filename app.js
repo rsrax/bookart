@@ -22,16 +22,17 @@ const categoryRoutes = require("./routes/category");
 const productRoutes = require("./routes/product");
 const braintreeRoutes = require("./routes/braintree");
 const orderRoutes = require("./routes/order");
+const complaintRoutes = require("./routes/complaint");
 
 // MongoDB Setup
 mongoose
-	.connect(process.env.DATABASE, {
-		useNewUrlParser: true,
-		useCreateIndex: true,
-		useUnifiedTopology: true,
-		useFindAndModify: false,
-	})
-	.then(() => console.log("Database Connected..."));
+  .connect(process.env.DATABASE, {
+    useNewUrlParser: true,
+    useCreateIndex: true,
+    useUnifiedTopology: true,
+    useFindAndModify: false
+  })
+  .then(() => console.log("Database Connected..."));
 
 // Middlewares
 app.use(morgan("dev"));
@@ -47,20 +48,21 @@ app.use("/api", categoryRoutes);
 app.use("/api", productRoutes);
 app.use("/api", braintreeRoutes);
 app.use("/api", orderRoutes);
+app.use("/api", complaintRoutes);
 
 // Serve Static Assets in production
 if (process.env.NODE_ENV === "production") {
-	// Set static folder
-	app.use(express.static("client/build"));
+  // Set static folder
+  app.use(express.static("client/build"));
 
-	app.get("*", (req, res) => {
-		res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
-	});
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+  });
 }
 
 // Listening to the port
 const port = process.env.PORT || 5001;
 
 app.listen(port, () => {
-	console.log(`Server running on port ${port}`);
+  console.log(`Server running on port ${port}`);
 });
