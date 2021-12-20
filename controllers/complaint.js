@@ -40,27 +40,27 @@ exports.create = async (req, res) => {
   });
 };
 
-// Update a complaint
-exports.update = async (req, res) => {
-  // Formidable is used to handle form data. we are using it to handle image upload
-  let form = new formidable.IncomingForm();
-  form.keepExtensions = true; // Extension for images
+// // Update a complaint
+// exports.update = async (req, res) => {
+//   // Formidable is used to handle form data. we are using it to handle image upload
+//   let form = new formidable.IncomingForm();
+//   form.keepExtensions = true; // Extension for images
 
-  form.parse(req, (err, fields, files) => {
-    // Update complaint
-    let complaint = req.complaint;
-    complaint = _.extend(complaint, fields);
+//   form.parse(req, (err, fields, files) => {
+//     // Update complaint
+//     let complaint = req.complaint;
+//     complaint = _.extend(complaint, fields);
 
-    // Save the new complaint
-    complaint.save((err, data) => {
-      if (err) return res.status(400).json({ msg: errorHandler(err) });
+//     // Save the new complaint
+//     complaint.save((err, data) => {
+//       if (err) return res.status(400).json({ msg: errorHandler(err) });
 
-      res.json({
-        complaint: data
-      });
-    });
-  });
-};
+//       res.json({
+//         complaint: data
+//       });
+//     });
+//   });
+// };
 
 // const Complaint = require("../models/complaint");
 // const { errorHandler } = require("../helpers/dbErrorHandler");
@@ -84,18 +84,18 @@ exports.update = async (req, res) => {
 //   });
 // };
 
-// exports.update = async (req, res) => {
-//   try {
-//     const { id } = req.body;
-//     const update = { status: 1 };
-//     Complaint.findOneAndUpdate({ _id: id }, update, { strict: false }, function (err, docs) {
-//       if (docs) {
-//         return res.json({ msg: "Status Updated" });
-//       } else {
-//         return res.status(400).json({ msg: "Status update Failed" });
-//       }
-//     });
-//   } catch (err) {
-//     return res.status(400).json({ error: errorHandler(err) });
-//   }
-// };
+exports.update = async (req, res) => {
+  try {
+    const { id } = req.params.complaintId;
+    const update = { status: 1 };
+    Complaint.findOneAndUpdate({ _id: id }, update, { strict: false }, function (err, docs) {
+      if (docs) {
+        return res.json({ msg: "Status Updated" });
+      } else {
+        return res.status(400).json({ msg: "Status update Failed" });
+      }
+    });
+  } catch (err) {
+    return res.status(400).json({ error: errorHandler(err) });
+  }
+};
