@@ -3,8 +3,6 @@ const { ObjectId } = mongoose.Schema;
 
 const productSchema = new mongoose.Schema(
 	{
-		_id: { type: String },
-
 		name: {
 			type: String,
 			trim: true,
@@ -50,12 +48,15 @@ const productSchema = new mongoose.Schema(
 			ref: "User",
 			required: true,
 		},
+
+		// isbn
+		isbn: {
+			type: String,
+			required: true,
+			unique: true,
+		},
 	},
 	{ timestamps: true }
 );
-
-productSchema.virtual("isbn").get(function () {
-	return this._id;
-});
 
 module.exports = mongoose.model("Product", productSchema);

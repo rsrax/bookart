@@ -138,6 +138,5 @@ exports.isSeller = async (req, res, next) => {
 	if (req.profile.role !== 3) {
 		return res.status(403).json({ err: "Seller account required" });
 	}
-
 	next();
 };
