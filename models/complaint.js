@@ -15,6 +15,12 @@ const complaintSchema = new mongoose.Schema(
       trim: true
     },
 
+    user_id: {
+      type: ObjectId,
+      ref: "User",
+      required: true
+    },
+
     transaction_id: {
       type: String,
       required: true
