@@ -54,9 +54,9 @@ const ManageComplaints = props => {
                 <span>{c.status ? "Resolved" : "Pending"}</span>
                 <span>{c.user_id}</span>
                 {c.status ? (
-                  <button onClick={() => updateStatus(c._id)} className="badge badge-danger badge-pill">
+                  <span onClick={() => updateStatus(c._id)} className="badge badge-danger badge-pill">
                     Updated
-                  </button>
+                  </span>
                 ) : (
                   <button onClick={() => updateStatus(c._id)} className="badge badge-danger badge-pill">
                     Update

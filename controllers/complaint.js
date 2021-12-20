@@ -2,30 +2,6 @@ const Complaint = require("../models/complaint");
 const { errorHandler } = require("../helpers/dbErrorHandler");
 
 exports.create = async (req, res) => {
-<<<<<<< HEAD
-  // Formidable is used to handle form data. we are using it to handle image upload
-  let form = new formidable.IncomingForm();
-  form.keepExtensions = true; // Extension for images
-  form.parse(req, (err, fields) => {
-    // check for all fields
-    const { title, description, transaction_id } = fields;
-    if (!title || !description || !transaction_id) {
-      return res.status(400).json({
-        err: "All fields are required"
-      });
-    }
-
-    // Create new product now
-    let complaint = new Complaint({
-      title,
-      description,
-      transaction_id,
-      user_id: req.params.userId
-    });
-    // Save the new complaint
-    complaint.save((err, data) => {
-      if (err) return res.status(400).json({ msg: errorHandler(err) });
-=======
   const { title, description, transaction_id } = req.body;
   console.log(req.body);
   console.log(req.params.userId);
@@ -36,7 +12,6 @@ exports.create = async (req, res) => {
     status: 0,
     user_id: req.params.userId
   });
->>>>>>> d424afce2b6dfecf850eac89842774a09bf64e62
 
   await complaint.save((err, data) => {
     if (err) {

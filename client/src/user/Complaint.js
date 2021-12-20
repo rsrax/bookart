@@ -12,9 +12,9 @@ export default function Complaint() {
     title: '',
     description: '',
 });
+  const [val,setVal]=useState("Select Order");
   const {transaction_id, title, description} = values;
   const [history, setHistory] = useState([]);
-
   const clickSubmit = (e) => {
     e.preventDefault();
     setValues({...values});
@@ -27,10 +27,10 @@ export default function Complaint() {
         else
         {
             setValues({...values, transaction_id: '', title: '', description: ''});
-        }
-      
-    })
 
+        }
+        
+    })
 }
 const handleChange = name => e => {
   const value=e.target.value;
@@ -72,7 +72,7 @@ const handleChange = name => e => {
                 <div className="col-lg-12">
                   <div className="form-group mt-2">
                     <select className='form-control' onChange={handleChange('transaction_id')}>
-                            <option value="All">Select Order</option>
+                            <option selected>{val}</option>
                             {history.map((h, i) => (
                                 <option key={i} value={h._id}>
                                     {h.transaction_id}
