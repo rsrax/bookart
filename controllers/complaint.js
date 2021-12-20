@@ -7,6 +7,7 @@ const Complaint = require("../models/complaint");
 
 // Handle database error
 const { errorHandler } = require("../helpers/dbErrorHandler");
+const complaint = require("../models/complaint");
 
 exports.create = async (req, res) => {
   // Formidable is used to handle form data. we are using it to handle image upload

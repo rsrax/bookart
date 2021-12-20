@@ -10,30 +10,31 @@ export default function Complaint() {
   const [values, setValues] = useState({
     transaction_id: '',
     title: '',
-    complaint: '',
-    success: false
+    description: '',
 });
-  const {transaction_id, title, complaint, success} = values;
+  const {transaction_id, title, description} = values;
   const [history, setHistory] = useState([]);
 
   const clickSubmit = (e) => {
     e.preventDefault();
     setValues({...values});
-    createComplaint({_id,token,values})
+    createComplaint(_id,token,values)
     .then(data => {
         if(data.error)
         {
-            setValues({...values, success: false})
+            setValues({...values})
         }
         else
         {
-            setValues({...values, transaction_id: '', title: '', complaint: '',success: true});
+            setValues({...values, transaction_id: '', title: '', description: ''});
         }
+      
     })
 
 }
 const handleChange = name => e => {
-  setValues({...values, [name]: e.target.value})
+  const value=e.target.value;
+  setValues({...values, [name]: value})
 };
   const init = (userId, token) => {
       getPurchaseHistory(userId, token).then(data => {
@@ -43,7 +44,6 @@ const handleChange = name => e => {
           }
           else
           {
-              console.log(data);
               setHistory(data);
           }
       })
@@ -78,6 +78,7 @@ const handleChange = name => e => {
                                     {h.transaction_id}
                                 </option>
                             ))}
+
                         </select>
                   </div>
                 </div>
@@ -90,11 +91,11 @@ const handleChange = name => e => {
     
                 <div className="col-lg-12">
                   <div className="form-group mt-2">
-                    <textarea onChange={handleChange('complaint')} className="form-control" rows="3" value={complaint} placeholder="Complaint "></textarea>
+                    <textarea onChange={handleChange('description')} className="form-control" rows="3" value={description} placeholder="description "></textarea>
                   </div>
                 </div>
                 <div className="col-lg-12">
-                  <button type="submit" onSubmit={clickSubmit} className="btn btn-danger-gradiant mt-3 text-white border-0 px-3 py-2"><span> SUBMIT</span></button>
+                  <button onClick={clickSubmit} className="btn btn-danger-gradiant mt-3 text-white border-0 px-3 py-2"><span> SUBMIT</span></button>
                 </div>
               </div>
             </form>

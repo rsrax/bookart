@@ -47,14 +47,14 @@ export const updateUser = (user, next) => {
     }
 }
 //Create a complaint
-export const createComplaint = async(userId, token, complaint) => {
-    return fetch(`/api/create/complaint${userId}`, {
+export const createComplaint = async(userId, token, values) => {
+    return fetch(`/api/complaint/create/${userId}`, {
         method: "POST",
         headers: {
             Accept: "application/json",
             Authorization: `Bearer ${token}`
         },
-        body: complaint
+        body: values
     })
     .then(response => {
         return response.json();
