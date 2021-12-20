@@ -27,7 +27,7 @@ const SellerDashboard = () => {
             <ul className="list-group">
                 <li className="list-group-item">{name}</li>
                 <li className="list-group-item">{email}</li>
-                <li className="list-group-item">{role === 3 ? 'Seller': `User id : ${_id}`}</li>
+                <li className="list-group-item">{role === 3 ? `Seller id : ${_id}`: `User id : ${_id}`}</li>
             </ul>
             </div>
         )

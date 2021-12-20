@@ -18,14 +18,6 @@ const Menu = ({history}) => {
     return (
         <div>
             <ul className="nav nav-tabs bg-dark" style={{height: 50}}>
-        
-                    <li className="nav-item">
-                        <Link className="nav-link" style={isActive(history, '/')} to="/">HOME</Link>
-                    </li>
-
-                    <li className="nav-item">
-                        <Link className="nav-link" style={isActive(history, '/shop')} to="/shop">SHOP</Link>
-                    </li>
 
                 {!isAuthenticated() && (
                  <Fragment>         
@@ -43,10 +35,23 @@ const Menu = ({history}) => {
                 {isAuthenticated() && (
                     <Fragment>
                      {isAuthenticated() && isAuthenticated().user.role === 0 && (
-                         
-                    <li className="nav-item">
-                        <Link className="nav-link" style={isActive(history, '/user/dashboard')} to="/user/dashboard">DASHBOARD</Link>
-                    </li>
+                         <Fragment>
+                        <li className="nav-item">
+                            <Link className="nav-link" style={isActive(history, '/')} to="/">HOME</Link>
+                        </li>
+    
+                        <li className="nav-item">
+                            <Link className="nav-link" style={isActive(history, '/shop')} to="/shop">SHOP</Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link className="nav-link" style={isActive(history, '/user/dashboard')} to="/user/dashboard">DASHBOARD</Link>
+                        </li> 
+                        <li className="nav-item">
+                        <Link className="nav-link" style={isActive(history, '/cart')} to="/cart">
+                            CART <sup><small className="cart-badge">{itemTotal()}</small></sup>
+                            </Link>
+                        </li>
+                        </Fragment>
                      )}
 
                      {isAuthenticated() && isAuthenticated().user.role === 1 && (
@@ -69,12 +74,6 @@ const Menu = ({history}) => {
                              <Link className="nav-link" style={isActive(history, '/seller/dashboard')} to="/seller/dashboard">DASHBOARD</Link>
                          </li>
                           )}
-                    
-                    <li className="nav-item">
-                       <Link className="nav-link" style={isActive(history, '/cart')} to="/cart">
-                           CART <sup><small className="cart-badge">{itemTotal()}</small></sup>
-                        </Link>
-                    </li>
                     
                     <li className="nav-item ml-auto">
                         <span className="nav-link" style={{cursor: 'pointer', color: '#ffffff'}} onClick={() => signout(() => {

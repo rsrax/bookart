@@ -41,7 +41,7 @@ const AddCateogary = () => {
         <form>
             <div className="form-group text-center">
                 <label className="text-muted">Name</label>
-                <input onChange={handleChange} type="name" className="form-control" value={name} required/>
+                <input style={{marginLeft : "10px"}} onChange={handleChange} type="name" className="form-control" value={name} required/>
             </div>
                
             <div style={{textAlign : "center"}} >

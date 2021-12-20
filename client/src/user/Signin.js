@@ -76,15 +76,25 @@ const Signin = () => {
             if(redirectToReferrer)
             {
                 if(user.role===1)
-                return <Redirect to="/admin/dashboard" />
-
+                    return <Redirect to="/admin/dashboard" />
+                else if(user.role===2)
+                    return <Redirect to="/employee/dashboard" />
+                else if(user.role===3)
+                    return <Redirect to="/seller/dashboard" />
                 else
-                return <Redirect to="/user/dashboard" />
+                    return <Redirect to="/user/dashboard" />
             }
 
             if(isAuthenticated())
             {
-                return <Redirect to="/" />
+                if(user.role===1)
+                    return <Redirect to="/admin/dashboard" />
+                else if(user.role===2)
+                    return <Redirect to="/employee/dashboard" />
+                else if(user.role===3)
+                    return <Redirect to="/seller/dashboard" />
+                else
+                    return <Redirect to="/user/dashboard" />
             }
         };
 
