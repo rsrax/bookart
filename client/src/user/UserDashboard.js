@@ -66,9 +66,11 @@ const UserDashboard = () => {
                             return (
                                 <div>
                                     <hr />
+                                    
                                     {h.products.map((p, i) => {
                                         return (
                                             <div key={i}>
+                                                 <h6>Transaction ID: {h.transaction_id}</h6>
                                                 <h6>Product name: {p.name}</h6>
                                                 <h6>
                                                     Product price: ${p.price}

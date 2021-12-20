@@ -22,6 +22,7 @@ export const Orders = () => {
 
             else
             {
+                console.log(data);
                 setOrders(data);
                 setLoading(false);
             }

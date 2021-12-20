@@ -1,17 +1,50 @@
 import React from 'react'
+import { useState, useEffect } from "react";
 import Layout from '../core/Layout'
 import './ComplaintCSS.css'
+import {getPurchaseHistory} from './apiUser';
+import {isAuthenticated} from '../auth';
+
 export default function Complaint() {
-    // const loadCategories = () => {
-    //     getCategories().then(data => {
-    //         if (data.error) {
-    //             console.log(data.error);
-    //         } else {
-    //             setData({ ...data, categories: data });
-    //         }
-    //     });
-    // };
+  const {user: {_id, name, email, role}, token} = isAuthenticated();
     
+    const [history, setHistory] = useState([]);
+
+    const init = (userId, token) => {
+      getPurchaseHistory(userId, token).then(data => {
+          if(data.error)
+          {
+              console.log(data.error)
+          }
+          else
+          {
+              console.log(data);
+              setHistory(data);
+          }
+      })
+  }
+
+    // const loadOrders = () => {
+    //     listOrders(user._id,token).then(data => {
+    //         if(data.error)
+    //         {
+    //             console.log(data.err);
+    //         }
+
+    //         else
+    //         {
+    //           console.log(data);
+    //           //  const d = data.filter((p) => p.user.id === user._id);
+    //            console.log(data.user.id);
+    //           //  console.log(d);
+    //           //  setOrders(d);
+    //         }
+    //     })
+    // }
+    useEffect(() => {
+      init(_id, token)
+        
+    }, [])
     return (
         <Layout title="Complaint" description={`Complaint For your Orders`}>
         <div className="contact3 py-5">
@@ -30,32 +63,25 @@ export default function Complaint() {
               <div className="row">
                 <div className="col-lg-12">
                   <div className="form-group mt-2">
-                    <select className='form-control'
-                                                        // onChange={handleChange("category")}
-                        >
+                    <select className='form-control'>
                             <option value="All">Select Order</option>
-                            {/* {categories.map((c, i) => (
-                                <option key={i} value={c._id}>
-                                    {c.name}
+                            {history.map((h, i) => (
+                                <option key={i} value={h._id}>
+                                    {h.transaction_id}
                                 </option>
-                            ))} */}
-                            <option value="Heyyy">Hello</option>
+                            ))}
                         </select>
                   </div>
                 </div>
                 <div className="col-lg-12">
                   <div className="form-group mt-2">
-                    <input className="form-control" type="email" placeholder="email address"/>
+                    <input className="form-control" type="text" placeholder="Title"/>
                   </div>
                 </div>
+    
                 <div className="col-lg-12">
                   <div className="form-group mt-2">
-                    <input className="form-control" type="text" placeholder="phone"/>
-                  </div>
-                </div>
-                <div className="col-lg-12">
-                  <div className="form-group mt-2">
-                    <textarea className="form-control" rows="3" placeholder="message"></textarea>
+                    <textarea className="form-control" rows="3" placeholder="Complaint "></textarea>
                   </div>
                 </div>
                 <div className="col-lg-12">
@@ -68,18 +94,7 @@ export default function Complaint() {
         <div className="col-lg-12">
           <div className="card mt-4 border-0 mb-4">
             <div className="row">
-              <div className="col-lg-4 col-md-4">
-                <div className="card-body d-flex align-items-center c-detail pl-0">
-                  <div className="mr-3 align-self-center">
-                    <img src="https://www.wrappixel.com/demos/ui-kit/wrapkit/assets/images/contact/icon1.png"/>
-                  </div>
-                  <div className="">
-                    <h6 className="font-weight-medium">Address</h6>
-                    <p className="">601 Sherwood Ave.
-                      <br/> San Bernandino</p>
-                  </div>
-                </div>
-              </div>
+             
               <div className="col-lg-4 col-md-4">
                 <div className="card-body d-flex align-items-center c-detail">
                   <div className="mr-3 align-self-center">
@@ -87,8 +102,8 @@ export default function Complaint() {
                   </div>
                   <div className="">
                     <h6 className="font-weight-medium">Phone</h6>
-                    <p className="">251 546 9442
-                      <br/> 630 446 8851</p>
+                    <p className="">98984 51000
+                      <br/> 98984 50025</p>
                   </div>
                 </div>
               </div>
@@ -100,8 +115,8 @@ export default function Complaint() {
                   <div className="">
                     <h6 className="font-weight-medium">Email</h6>
                     <p className="">
-                      info@wrappixel.com
-                      <br/> 123@wrappixel.com
+                      bookart1@gmail.com
+                      <br/> bookart2@gmail.com
                     </p>
                   </div>
                 </div>
