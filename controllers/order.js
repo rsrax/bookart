@@ -40,6 +40,7 @@ exports.create = (req, res) => {
 	const order = new Order(req.body.order);
 	order.save((error, data) => {
 		if (error) {
+			console.log(error);
 			return res.status(400).json({
 				error: errorHandler(error),
 			});
@@ -60,10 +61,10 @@ exports.create = (req, res) => {
 			"\n\nRegards, \nBookart",
 	};
 
-	transporter.sendMail(HelperOptions, (err, info) => {
-		if (err) throw err;
-		console.log("The message was sent");
-	});
+	// transporter.sendMail(HelperOptions, (err, info) => {
+	// 	if (err) throw err;
+	// 	console.log("The message was sent");
+	// });
 
 	let HelperOptions2 = {
 		from: process.env.NAME + "<" + process.env.EMAILID + ">",
@@ -77,10 +78,10 @@ exports.create = (req, res) => {
 			"on Bookart. Please check your dashboard to track the status of your order.\n\nRegards, \nBookart",
 	};
 
-	transporter.sendMail(HelperOptions2, (err, info) => {
-		if (err) throw err;
-		console.log("The message was sent");
-	});
+	// transporter.sendMail(HelperOptions2, (err, info) => {
+	// 	if (err) throw err;
+	// 	console.log("The message was sent");
+	// });
 };
 
 // Push order to user history

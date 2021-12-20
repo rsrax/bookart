@@ -61,7 +61,7 @@ const UserProfile = ({match}) => {
 
             <div className="form-group">
                 <label className="text-muted">Email</label>
-                <input type="email" value={email} onChange={handleChange('email')} className="form-control"/>
+                <input type="email" value={email} onChange={handleChange('email')} disabled className="form-control"/>
             </div>
 
             <div className="form-group">
@@ -76,7 +76,7 @@ const UserProfile = ({match}) => {
     const redirectuser = success => {
         if(success)
         {
-            return <Redirect to="/dashboard" />
+            return <Redirect to="/user/dashboard" />
         }
     }
 
