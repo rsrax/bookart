@@ -53,9 +53,15 @@ const ManageComplaints = props => {
                 <strong>{c.title}</strong>
                 <span>{c.status ? "Resolved" : "Pending"}</span>
                 <span>{c.user_id}</span>
-                <button onClick={() => updateStatus(c._id)} className="badge badge-danger badge-pill">
-                  Update
-                </button>
+                {c.status ? (
+                  <button onClick={() => updateStatus(c._id)} className="badge badge-danger badge-pill">
+                    Updated
+                  </button>
+                ) : (
+                  <button onClick={() => updateStatus(c._id)} className="badge badge-danger badge-pill">
+                    Update
+                  </button>
+                )}
 
                 {/* <span
 									onClick={() => destroy(c._id)}
