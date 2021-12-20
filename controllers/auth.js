@@ -122,9 +122,9 @@ exports.isAdmin = async (req, res, next) => {
 	next();
 };
 
-// Middleware for Admin
+// Middleware for Employee
 exports.isEmployee = async (req, res, next) => {
-	// Not Admin
+	// Not Employee
 	if (req.profile.role !== 2) {
 		return res.status(403).json({ err: "Employee access required" });
 	}
@@ -138,6 +138,5 @@ exports.isSeller = async (req, res, next) => {
 	if (req.profile.role !== 3) {
 		return res.status(403).json({ err: "Seller account required" });
 	}
-
 	next();
 };

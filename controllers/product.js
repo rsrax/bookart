@@ -1,3 +1,5 @@
+const mongoose = require("mongoose");
+const { ObjectId } = require("mongodb");
 const formidable = require("formidable");
 const fs = require("fs");
 const _ = require("lodash");
@@ -48,7 +50,7 @@ exports.create = async (req, res) => {
 
 		// Create new product now
 		let product = new Product({
-			_id: isbn,
+			isbn,
 			name,
 			description,
 			price,
