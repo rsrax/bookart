@@ -134,7 +134,7 @@ export const Orders = () => {
                             </ul>
 
                             <h5 className="mt-4 mb-4 font-italic">
-                                Total books in the order: {o.products.length}
+                                Total products in the order: {o.products.length}
                             </h5>
 
                             {o.products.map((p, pIndex) => {

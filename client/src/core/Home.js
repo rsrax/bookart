@@ -52,7 +52,7 @@ const Home = () => {
 	return (
 		<Layout
 			title="Bookart"
-			description="Buy some awesome dev related books now"
+			description="Buy some awesome books now"
 			className="container-fluid"
 		>
 			<Search />

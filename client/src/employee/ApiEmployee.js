@@ -1,4 +1,4 @@
-// Fetch all orders for admin
+// Fetch all orders for employee
 export const listOrders = (userId, token) => {
     return fetch(`/api/order/list/${userId}`, {
         method: "GET",
