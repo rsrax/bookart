@@ -46,6 +46,23 @@ export const updateUser = (user, next) => {
         }
     }
 }
+//Create a complaint
+export const createComplaint = async(userId, token, complaint) => {
+    return fetch(`/api/create/complaint${userId}`, {
+        method: "POST",
+        headers: {
+            Accept: "application/json",
+            Authorization: `Bearer ${token}`
+        },
+        body: complaint
+    })
+    .then(response => {
+        return response.json();
+    })
+    .catch(err => {
+        console.log(err);
+    })
+}
 
 // Get purchase history
 export const getPurchaseHistory = (userId, token) => {

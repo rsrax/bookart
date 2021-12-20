@@ -4,13 +4,38 @@ import Layout from '../core/Layout'
 import './ComplaintCSS.css'
 import {getPurchaseHistory} from './apiUser';
 import {isAuthenticated} from '../auth';
-
+import {createComplaint} from './apiUser';
 export default function Complaint() {
   const {user: {_id, name, email, role}, token} = isAuthenticated();
-    
-    const [history, setHistory] = useState([]);
+  const [values, setValues] = useState({
+    transaction_id: '',
+    title: '',
+    complaint: '',
+    success: false
+});
+  const {transaction_id, title, complaint, success} = values;
+  const [history, setHistory] = useState([]);
 
-    const init = (userId, token) => {
+  const clickSubmit = (e) => {
+    e.preventDefault();
+    setValues({...values});
+    createComplaint({_id,token,values})
+    .then(data => {
+        if(data.error)
+        {
+            setValues({...values, success: false})
+        }
+        else
+        {
+            setValues({...values, transaction_id: '', title: '', complaint: '',success: true});
+        }
+    })
+
+}
+const handleChange = name => e => {
+  setValues({...values, [name]: e.target.value})
+};
+  const init = (userId, token) => {
       getPurchaseHistory(userId, token).then(data => {
           if(data.error)
           {
@@ -24,23 +49,6 @@ export default function Complaint() {
       })
   }
 
-    // const loadOrders = () => {
-    //     listOrders(user._id,token).then(data => {
-    //         if(data.error)
-    //         {
-    //             console.log(data.err);
-    //         }
-
-    //         else
-    //         {
-    //           console.log(data);
-    //           //  const d = data.filter((p) => p.user.id === user._id);
-    //            console.log(data.user.id);
-    //           //  console.log(d);
-    //           //  setOrders(d);
-    //         }
-    //     })
-    // }
     useEffect(() => {
       init(_id, token)
         
@@ -63,7 +71,7 @@ export default function Complaint() {
               <div className="row">
                 <div className="col-lg-12">
                   <div className="form-group mt-2">
-                    <select className='form-control'>
+                    <select className='form-control' onChange={handleChange('transaction_id')}>
                             <option value="All">Select Order</option>
                             {history.map((h, i) => (
                                 <option key={i} value={h._id}>
@@ -75,17 +83,18 @@ export default function Complaint() {
                 </div>
                 <div className="col-lg-12">
                   <div className="form-group mt-2">
-                    <input className="form-control" type="text" placeholder="Title"/>
+    
+                    <input  onChange={handleChange('title')} type="text" placeholder="Title" className="form-control" value={title}/>
                   </div>
                 </div>
     
                 <div className="col-lg-12">
                   <div className="form-group mt-2">
-                    <textarea className="form-control" rows="3" placeholder="Complaint "></textarea>
+                    <textarea onChange={handleChange('complaint')} className="form-control" rows="3" value={complaint} placeholder="Complaint "></textarea>
                   </div>
                 </div>
                 <div className="col-lg-12">
-                  <button type="submit" className="btn btn-danger-gradiant mt-3 text-white border-0 px-3 py-2"><span> SUBMIT</span></button>
+                  <button type="submit" onSubmit={clickSubmit} className="btn btn-danger-gradiant mt-3 text-white border-0 px-3 py-2"><span> SUBMIT</span></button>
                 </div>
               </div>
             </form>
