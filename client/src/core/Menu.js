@@ -28,7 +28,11 @@ const Menu = ({history}) => {
                     <li className="nav-item">
                         <Link className="nav-link" style={isActive(history, '/signup')} to="/signup">SIGNUP</Link>
                     </li>
- 
+                    <li className="nav-item">
+                        <Link className="nav-link" style={isActive(history, '/cart')} to="/cart">
+                            CART <sup><small className="cart-badge">{itemTotal()}</small></sup>
+                            </Link>
+                        </li>
                 </Fragment>
                 )}
 
