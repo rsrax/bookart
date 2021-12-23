@@ -13,7 +13,7 @@ const AdminDashboard = () => {
                 <h4 className="card-header text-center">Admin Links</h4>
                 <ul className="list-group">
                     <li className="list-group-item"><Link to="/create/category" className="nav-link">Create Category</Link></li>
-                    <li className="list-group-item"><Link to="/create/product" className="nav-link">Generate Reports</Link></li>
+                    //<li className="list-group-item"><Link to="/create/product" className="nav-link">Generate Reports</Link></li>
                     
                 </ul>
 
